@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 
 namespace SerialsCalendar
 {
@@ -23,6 +23,13 @@ namespace SerialsCalendar
             return calendarEvents.GroupBy(keySelector)
                 .Where(g => g.Count() > 1)
                 .SelectMany(g => g.Skip(1));
+        }
+
+        public static HtmlNode AsHtmlNode(this string html)
+        {
+            var d = new HtmlDocument();
+            d.LoadHtml(html);
+            return d.DocumentNode;
         }
     }
 }

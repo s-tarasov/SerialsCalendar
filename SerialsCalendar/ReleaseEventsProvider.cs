@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 
 namespace SerialsCalendar
 {
@@ -21,13 +20,14 @@ namespace SerialsCalendar
 
         public async Task<IEnumerable<ReleaseEvent>> GetSerialReleasesAsync(string serialId)
         {
-            var htmlDocument = LoadHtml(await _client.GetStringAsync("http://www.serialdate.ru/serial.php?id=" + serialId));
-            var serialName = htmlDocument.SelectSingleNode("//h1").InnerText.Split('/').First().Trim();
-            return htmlDocument
+            var html = (await _client.GetStringAsync("http://www.serialdate.ru/serial.php?id=" + serialId))
+                .AsHtmlNode();
+            var serialName = html.SelectSingleNode("//h1").InnerText.Split('/').First().Trim();
+            return html
                 .SelectNodes("//table[@class='dates']//tr")
                 .Select(row =>
                 {
-                    var cells = LoadHtml(row.OuterHtml).SelectNodes("//td");
+                    var cells = row.OuterHtml.AsHtmlNode().SelectNodes("//td");
                     var dateParts = cells[0].InnerText
                         .Split('.')
                         .Select(int.Parse)
@@ -53,13 +53,6 @@ namespace SerialsCalendar
                     .WhenAll();
 
             return releases.SelectMany(r => r).ToArray();
-        }
-
-        HtmlNode LoadHtml(string html)
-        {
-            var d = new HtmlDocument();
-            d.LoadHtml(html);
-            return d.DocumentNode;
         }
     }
 }
