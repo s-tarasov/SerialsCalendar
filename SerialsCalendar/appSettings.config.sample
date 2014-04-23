@@ -1,0 +1,7 @@
+﻿<?xml version="1.0"?>
+<appSettings>
+  <add key="clientId" value="appClientId" />
+  <add key="clientSecret" value="appClientSecret" />
+  <add key="calendarId" value="googleCalendarId" />
+  <add key="serialIds" value="777,666,555" />
+</appSettings>
