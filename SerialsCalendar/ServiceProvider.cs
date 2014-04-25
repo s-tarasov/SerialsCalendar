@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,9 +15,9 @@ namespace SerialsCalendar
             return new CalendarUpdater(calendar);
         }
 
-        public ReleaseEventsProvider GetReleaseEventsProvider()
+        public ReleaseEventsProviderBase GetReleaseEventsProvider()
         {
-            return new ReleaseEventsProvider(new HttpClient(), DateTime.Today.AddYears(-1));
+            return new TvRageComSerialsDateRuReleaseEventsProvider(ConfigurationManager.AppSettings["tvrangekey"], new HttpClient(), DateTime.Today.AddYears(-1));
         }
 
         private async Task<CalendarService> CreateCalendarServiceAsync()

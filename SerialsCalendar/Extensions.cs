@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using HtmlAgilityPack;
 
 namespace SerialsCalendar
@@ -30,6 +31,11 @@ namespace SerialsCalendar
             var d = new HtmlDocument();
             d.LoadHtml(html);
             return d.DocumentNode;
+        }
+
+        public static XDocument AsXDocument(this string html)
+        {
+            return XDocument.Parse(html);
         }
     }
 }

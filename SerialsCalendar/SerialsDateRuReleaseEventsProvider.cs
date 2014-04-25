@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace SerialsCalendar
 {
-    public class ReleaseEventsProvider
+    public class SerialsDateRuReleaseEventsProvider : ReleaseEventsProviderBase
     {
         private readonly HttpClient _client;
         private readonly DateTime _minDate;
 
-        public ReleaseEventsProvider(HttpClient client, DateTime minDate)
+        public SerialsDateRuReleaseEventsProvider(HttpClient client, DateTime minDate)
         {
             _client = client;
             _minDate = minDate;
         }
 
-        public async Task<IEnumerable<ReleaseEvent>> GetSerialReleasesAsync(string serialId)
+        protected override async Task<IEnumerable<ReleaseEvent>> GetSerialReleasesAsync(string serialId)
         {
             var html = (await _client.GetStringAsync("http://www.serialdate.ru/serial.php?id=" + serialId))
                 .AsHtmlNode();
@@ -44,15 +44,6 @@ namespace SerialsCalendar
                 })
                 .Where(r => r.Date > _minDate)
                 .ToArray();
-        }
-
-        public async Task<IEnumerable<ReleaseEvent>> GetReleasesAsync(IEnumerable<string> serialIds)
-        {
-            var releases = await serialIds
-                    .Select(GetSerialReleasesAsync)
-                    .WhenAll();
-
-            return releases.SelectMany(r => r).ToArray();
         }
     }
 }

@@ -4,4 +4,5 @@
   <add key="clientSecret" value="appClientSecret" />
   <add key="calendarId" value="googleCalendarId" />
   <add key="serialIds" value="777,666,555" />
+  <add key="tvrangekey" value="tvrangekey" />
 </appSettings>

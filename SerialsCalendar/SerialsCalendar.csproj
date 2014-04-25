@@ -103,11 +103,13 @@
     <Compile Include="Calendar.cs" />
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CalendarUpdater.cs" />
+    <Compile Include="TvRageComSerialsDateRuReleaseEventsProvider.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReleaseEventsProvider.cs" />
+    <Compile Include="SerialsDateRuReleaseEventsProvider.cs" />
     <Compile Include="ReleaseEvent.cs" />
+    <Compile Include="ReleaseEventsProviderBase.cs" />
     <Compile Include="ServiceInizializerFactory.cs" />
     <Compile Include="ServiceProvider.cs" />
   </ItemGroup>
