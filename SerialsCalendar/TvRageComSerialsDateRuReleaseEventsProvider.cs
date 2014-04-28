@@ -20,6 +20,11 @@ namespace SerialsCalendar
             _minDate = minDate;
         }
 
+        private DateTime CorrectTimezoneOffset(DateTime originalDate)
+        {
+            return originalDate.AddDays(1);
+        }
+
         protected override async Task<IEnumerable<ReleaseEvent>> GetSerialReleasesAsync(string serialAlias)
         {
             var serialId = (await _client.GetStringAsync("http://services.tvrage.com/feeds/search.php?key=" + _apiKey + "&show=" + serialAlias))
@@ -34,15 +39,14 @@ namespace SerialsCalendar
             return xml
                 .XPathSelectElements("//Episodelist//Season//episode")
                 .Select(episodeNode => new ReleaseEvent(
-                            date: DateTime.Parse(episodeNode.XPathSelectElement("airdate").Value),
+                            date: CorrectTimezoneOffset(DateTime.Parse(episodeNode.XPathSelectElement("airdate").Value)),
                             summary: serialName + " " + string.Format(
                                 "S{0}E{1}",
                                 episodeNode.Parent.Attribute("no").Value,
                                 episodeNode.XPathSelectElement("seasonnum").Value
-                                )))
+                            )))
                 .Where(r => r.Date > _minDate)
                 .ToArray();
         }
     }
 }
-    
