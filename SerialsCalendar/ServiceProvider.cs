@@ -17,12 +17,17 @@ namespace SerialsCalendar
 
         public ReleaseEventsProviderBase GetReleaseEventsProvider()
         {
-            return new TvRageComSerialsDateRuReleaseEventsProvider(ConfigurationManager.AppSettings["tvrangekey"], new HttpClient(), DateTime.Today.AddYears(-1));
+            var apiKey = ConfigurationManager.AppSettings["tvrangekey"];
+            var client = new HttpClient();
+            var idProvider = new TvRageComSerialIdProvider(apiKey, client);
+            var cachedIdProvider = new CachedSerialIdProvider(idProvider, new FileSystemCache("Serialids"));
+
+            return new TvRageComReleaseEventsProvider(apiKey, client, DateTime.Today.AddYears(-1), cachedIdProvider);
         }
 
         private async Task<CalendarService> CreateCalendarServiceAsync()
         {
-            var serviceInizializer = await ServiceInizializerFactory.GetServiceInizializerAsync(
+            var serviceInizializer = await GoogleApiServiceInizializerFactory.GetServiceInizializerAsync(
                 clientId: ConfigurationManager.AppSettings["clientId"],
                 clientSecret: ConfigurationManager.AppSettings["clientSecret"]);
 

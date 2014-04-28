@@ -7,7 +7,7 @@ using Google.Apis.Services;
 
 namespace SerialsCalendar
 {
-    public class ServiceInizializerFactory
+    public class GoogleApiServiceInizializerFactory
     {
         public static Task<BaseClientService.Initializer> GetServiceInizializerAsync(string clientId, string clientSecret)
         {

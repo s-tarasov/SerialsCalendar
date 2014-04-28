@@ -7,17 +7,19 @@ using System.Xml.XPath;
 
 namespace SerialsCalendar
 {
-    public class TvRageComSerialsDateRuReleaseEventsProvider : ReleaseEventsProviderBase
+    public class TvRageComReleaseEventsProvider : ReleaseEventsProviderBase
     {
         private readonly string _apiKey;
         private readonly HttpClient _client;
         private readonly DateTime _minDate;
+        private readonly ISerialIdProvider _serialIdProvider;
 
-        public TvRageComSerialsDateRuReleaseEventsProvider(string apiKey, HttpClient client, DateTime minDate)
+        public TvRageComReleaseEventsProvider(string apiKey, HttpClient client, DateTime minDate, ISerialIdProvider serialIdProvider)
         {
             _apiKey = apiKey;
             _client = client;
             _minDate = minDate;
+            _serialIdProvider = serialIdProvider;
         }
 
         private DateTime CorrectTimezoneOffset(DateTime originalDate)
@@ -27,10 +29,7 @@ namespace SerialsCalendar
 
         protected override async Task<IEnumerable<ReleaseEvent>> GetSerialReleasesAsync(string serialAlias)
         {
-            var serialId = (await _client.GetStringAsync("http://services.tvrage.com/feeds/search.php?key=" + _apiKey + "&show=" + serialAlias))
-                .AsXDocument()
-                .XPathSelectElement("//show//showid")
-                .Value;
+            var serialId = await _serialIdProvider.GetSerialId(serialAlias);
 
             var xml = (await _client.GetStringAsync("http://services.tvrage.com/feeds/episode_list.php?key=" + _apiKey + "&sid=" + serialId))
                 .AsXDocument();
