@@ -38,7 +38,7 @@ namespace SerialsCalendar
                 .ToList();
         }
 
-        public async Task AddEventAsync(DateTime date, string summary)
+        public async Task AddEventAsync(DateTime date, string summary, string description)
         {
             await (await _service).Events
                 .Insert(
@@ -46,7 +46,8 @@ namespace SerialsCalendar
                     {
                         Summary = summary,
                         Start = new EventDateTime { Date = date.ToString("yyyy-MM-dd") },
-                        End = new EventDateTime { Date = date.AddDays(1).ToString("yyyy-MM-dd") }
+                        End = new EventDateTime { Date = date.AddDays(1).ToString("yyyy-MM-dd") },
+                        Description = description
                     }, 
                     calendarId: _calendarId)
                 .ExecuteAsync();

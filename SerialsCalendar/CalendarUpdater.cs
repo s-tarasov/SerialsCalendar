@@ -28,7 +28,7 @@ namespace SerialsCalendar
 
             foreach (var newEvent in newEvents)
             {
-                await _calendar.AddEventAsync(newEvent.Date, newEvent.Summary);
+                await _calendar.AddEventAsync(newEvent.Date, newEvent.Summary, newEvent.Description);
             }
         }
     }

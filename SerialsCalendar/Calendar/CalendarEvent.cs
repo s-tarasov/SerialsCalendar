@@ -12,7 +12,7 @@ namespace SerialsCalendar
             _internalEvent = internalEvent;
         }
 
-        public string Id 
+        public string Id
         {
             get { return _internalEvent.Id; }
         }
@@ -25,6 +25,11 @@ namespace SerialsCalendar
         public DateTime Date
         {
             get { return DateTime.Parse(_internalEvent.Start.Date); }
+        }
+
+        public string Description
+        {
+            get { return _internalEvent.Description; }
         }
     }
 }

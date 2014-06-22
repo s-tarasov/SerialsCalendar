@@ -40,7 +40,8 @@ namespace SerialsCalendar
 
                     return new ReleaseEvent(
                         date: new DateTime(dateParts[2], dateParts[1], dateParts[0]),
-                        summary: serialName + " " + WebUtility.HtmlDecode(cells[1].InnerText));
+                        summary: serialName + " " + WebUtility.HtmlDecode(cells[1].InnerText),
+                        description: null);
                 })
                 .Where(r => r.Date > _minDate)
                 .ToArray();

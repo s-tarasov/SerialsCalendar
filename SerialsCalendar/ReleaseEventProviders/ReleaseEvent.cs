@@ -6,8 +6,9 @@ namespace SerialsCalendar
     {
         private readonly DateTime _date;
         private readonly string _summary;
+        private readonly string _description;
 
-        public ReleaseEvent(DateTime date, string summary)
+        public ReleaseEvent(DateTime date, string summary, string description)
         {
             if (string.IsNullOrWhiteSpace(summary))
             {
@@ -21,6 +22,8 @@ namespace SerialsCalendar
 
             _date = date;
             _summary = summary;
+            _description = description;
+            
         }
 
         public DateTime Date
@@ -33,11 +36,17 @@ namespace SerialsCalendar
             get { return _summary; }
         }
 
+        public string Description
+        {
+            get { return _description; }
+        }
+
 
         public bool Same(CalendarEvent @event)
         {
             return @event.Date == Date 
-                && @event.Summary == Summary;
+                && @event.Summary == Summary
+                && @event.Description == Description;
         }
     }
 }
