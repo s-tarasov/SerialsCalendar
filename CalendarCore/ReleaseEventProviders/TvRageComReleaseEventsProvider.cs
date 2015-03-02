@@ -27,13 +27,15 @@ namespace SerialsCalendar
             return originalDate.AddDays(1);
         }
 
-        private static string DefineDay(string dateSource)
+        private static DateTime SafeDateParse(string dateSource)
         {
-            if (dateSource.EndsWith("00"))
+            DateTime date;
+            if (DateTime.TryParse(dateSource, out date))
             {
-                return dateSource.Remove(dateSource.Length - 1) + "1";
+                return date;
             }
-            return dateSource;
+
+            return DateTime.MinValue;
         }
 
         protected override async Task<IEnumerable<ReleaseEvent>> GetSerialReleasesAsync(string serialAlias)
@@ -47,7 +49,7 @@ namespace SerialsCalendar
             return xml
                 .XPathSelectElements("//Episodelist//Season//episode")
                 .Select(episodeNode => new ReleaseEvent(
-                            date: CorrectTimezoneOffset(DateTime.Parse(DefineDay(episodeNode.XPathSelectElement("airdate").Value))),
+                            date: CorrectTimezoneOffset(SafeDateParse(episodeNode.XPathSelectElement("airdate").Value)),
                             summary: serialName + " " + string.Format(
                                 "S{0}E{1}",
                                 episodeNode.Parent.Attribute("no").Value,

@@ -40,13 +40,5 @@ namespace SerialsCalendar
         {
             get { return _description; }
         }
-
-
-        public bool Same(CalendarEvent @event)
-        {
-            return @event.Date == Date 
-                && @event.Summary == Summary
-                && @event.Description == Description;
-        }
     }
 }

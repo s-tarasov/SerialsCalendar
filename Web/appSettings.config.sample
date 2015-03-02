@@ -1,0 +1,6 @@
+{
+    "PreserveLoginUrl" : "true",
+    "ClientValidationEnabled" : "true",
+    "UnobtrusiveJavaScriptEnabled" : "true",
+    "tvrangekey" : "tvrangeApikey"
+}

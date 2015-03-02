@@ -1,0 +1,15 @@
+﻿{
+    "version": "1.0.0-*",
+    "dependencies": {       
+        "HtmlAgilityPack" : "1.4.6"
+    },
+    "frameworks": {
+     "aspnet50": { 
+       "frameworkAssemblies": {
+            "System.Xml": "",
+            "System.Xml.Linq": "",
+            "System.Net.Http": ""
+       }
+     }
+   }
+}
