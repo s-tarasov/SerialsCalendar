@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 
-namespace SerialsCalendar
+namespace CalendarCore
 {
     public class ReleaseCalendarEvent : ICalendarEvent
     {

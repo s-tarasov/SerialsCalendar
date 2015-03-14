@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SerialsCalendar
+namespace CalendarCore
 {
     public interface ICalendarEvent
     {

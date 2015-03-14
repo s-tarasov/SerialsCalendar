@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 
-namespace SerialsCalendar
+namespace CalendarCore
 {
     public class TvRageComReleaseEventsProvider : ReleaseEventsProviderBase
     {

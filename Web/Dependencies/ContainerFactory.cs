@@ -3,8 +3,6 @@ using Microsoft.Framework.DependencyInjection.Autofac;
 
 using Autofac;
 
-using SerialsCalendar;
-
 namespace Web.Dependencies
 {
     public static class ContainerFactory

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SerialsCalendar.ReleaseEventCalendar
+namespace CalendarCore.ReleaseEventCalendar
 {
     public class ReleaseEventCalendarBuilder
     {

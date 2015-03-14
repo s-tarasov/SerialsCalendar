@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace SerialsCalendar
+namespace CalendarCore
 {
     public interface IStringCache
     {

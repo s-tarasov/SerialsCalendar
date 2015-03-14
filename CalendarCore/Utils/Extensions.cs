@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using HtmlAgilityPack;
 
-namespace SerialsCalendar
+namespace CalendarCore
 {
     public static class Extensions
     {

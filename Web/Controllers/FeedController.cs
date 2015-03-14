@@ -2,7 +2,7 @@
 
 using Microsoft.AspNet.Mvc;
 
-using SerialsCalendar.ReleaseEventCalendar;
+using CalendarCore.ReleaseEventCalendar;
 
 using Web.ViewResults;
 

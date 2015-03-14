@@ -4,8 +4,8 @@ using System.Net.Http;
 using Autofac;
 using Autofac.Core;
 
-using SerialsCalendar;
-using SerialsCalendar.ReleaseEventCalendar;
+using CalendarCore;
+using CalendarCore.ReleaseEventCalendar;
 
 using Web.Configuration;
 

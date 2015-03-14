@@ -10,7 +10,7 @@ using DDay.iCal;
 using DDay.iCal.Serialization;
 using DDay.iCal.Serialization.iCalendar;
 
-using SerialsCalendar;
+using CalendarCore;
 
 namespace Web.ViewResults
 {

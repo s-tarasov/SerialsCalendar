@@ -1,6 +1,6 @@
 using System;
 
-namespace SerialsCalendar
+namespace CalendarCore
 {
     public class ReleaseEvent
     {
