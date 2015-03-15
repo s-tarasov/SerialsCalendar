@@ -43,10 +43,10 @@ _ReSharper*/
 
 #Project files
 [Bb]uild/
+artifacts/
 
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line
 packages/
-
 
 appSettings.json

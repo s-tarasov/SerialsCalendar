@@ -1,5 +1,6 @@
 {
-  "sources": [
-    "wrap"
-  ]
+    "sources": [
+        "wrap",
+        "Libraries"
+    ]
 }
