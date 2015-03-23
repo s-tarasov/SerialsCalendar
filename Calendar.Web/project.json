@@ -1,20 +1,24 @@
 {
+    "webroot": "wwwroot",
     "dependencies": {
         "Kestrel": "1.0.0-beta3",
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta3",
         "Microsoft.AspNet.Hosting": "1.0.0-beta3",
+        "Microsoft.AspNet.Http": "1.0.0-beta3",
         "Microsoft.AspNet.Server.WebListener": "1.0.0-beta3",
+        "Microsoft.AspNet.Security.Google": "1.0.0-beta3",
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta3",
         "Microsoft.AspNet.Mvc": "6.0.0-beta3",
         "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
         "Microsoft.Framework.DependencyInjection.Autofac": "1.0.0-beta3",
         "DDay.iCal": "1.0.2.575",
         "Autofac": "3.5.2.0",
-        "Calendar.Builder": "1.0.0-*"
+        "Calendar.Builder": "1.0.0-*",
+        "Calendar.Identity.MySQL": "1.0.0-*"
     },
     "commands": {
         "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
-        "kestrel-windows": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5000"
+        "kestrel-windows": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5001"
     },
     "frameworks": {
         "aspnet50": {
@@ -22,5 +26,21 @@
                 "System.Net.Http": ""
             }
         }
-    }
+    },
+    "exclude": [
+        "wwwroot",
+        "node_modules",
+        "bower_components"
+    ],
+    "bundleExclude": [
+        "node_modules",
+        "bower_components",
+        "**.kproj",
+        "**.user",
+        "**.vspscc"
+    ] ,
+  /*  "scripts": {
+        "postrestore": [ "npm install" ],
+        "prepare": [ "grunt bower:install" ]
+    } */
 }

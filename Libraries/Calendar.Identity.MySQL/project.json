@@ -1,0 +1,15 @@
+﻿{
+    "version": "1.0.0-*",
+    "dependencies": {
+        "Microsoft.AspNet.Identity": "3.0.0-*",
+        "MySql.Data": "6.7.4"
+    },
+    "frameworks": {
+        "aspnet50": {
+            "frameworkAssemblies": {
+                "System.Data": ""
+            }
+        }
+    }
+
+}

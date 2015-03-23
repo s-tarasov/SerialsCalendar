@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 using Microsoft.AspNet.Builder;
 
@@ -7,9 +6,10 @@ namespace Calendar.Web.App_Start
 {
     public static class UseConsoleTraceExtension
     {
-        [Conditional("DEBUG")]
-        public static void UseConsoleTrace(this IApplicationBuilder app) {
-            app.Use(async (context, next) =>
+        public static IApplicationBuilder UseConsoleTrace(this IApplicationBuilder app)
+        {
+#if DEBUG
+            return app.Use(async (context, next) =>
             {
                 Console.WriteLine(context.Request.Path);
 
@@ -22,6 +22,9 @@ namespace Calendar.Web.App_Start
                     Console.WriteLine(ex);
                 }
             });
+#else
+            return app;
+#endif
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 using Microsoft.AspNet.Builder;
 
@@ -12,18 +13,25 @@ public class Startup
 {
     public void Configure(IApplicationBuilder app)
     {
-        app.InitConfiguration();
+        app
+            .InitConfiguration()
+            .UseServices(services => {
+                ServiceConfigurator.Configure(services);
 
-        app.UseServices(services => {
-            ServiceConfigurator.Configure(services);
+                var container = ContainerFactory.Create(services);
 
-            var container = ContainerFactory.Create(services);
+                return container.Resolve<IServiceProvider>();
+            })
+            .UseConsoleTrace()
+            .UseStaticFiles()
+            .UseIdentity()
+            .UseGoogleAuthentication()
+            .UseMvc(RouteConfig.RegisterRoutes);
 
-            return container.Resolve<IServiceProvider>();
-        });
-
-        app.UseConsoleTrace();
-
-        app.UseMvc(RouteConfig.RegisterRoutes);
+        //TODO remove fix after update to rc1
+        var temp = Environment.GetEnvironmentVariable("ASPNET_TEMP");
+        if (string.IsNullOrWhiteSpace(temp)) {
+            Environment.SetEnvironmentVariable("ASPNET_TEMP", Path.GetTempPath());
+        }
     }
 }
