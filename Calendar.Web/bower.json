@@ -2,8 +2,10 @@
     "name": "calendarweb",
     "private": true,
     "dependencies": {
-        "bootstrap": "3.0.0",
-        "jquery": "1.10.2"
+        "jquery.easing": "~1.3.1",
+        "bootstrap": "~3.3.2",
+        "font-awesome": "~4.3.0",
+        "jquery": "~2.1.3"
     },
     "exportsOverride": {
         "bootstrap": {
@@ -11,8 +13,9 @@
             "css": "dist/css/*.*",
             "fonts": "dist/fonts/*.*"
         },
-        "jquery": {
-            "": "jquery.{js,min.js,min.map}"
+        "font-awesome": {
+            "css": "css/*.*",
+            "fonts": "fonts/*.*"
         }
     }
 }

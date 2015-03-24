@@ -4,32 +4,33 @@
 @using Calendar.Web.Models;
 
 @inject SignInManager<ApplicationUser> SignInManager
-<h4>Use another service to log in.</h4>
-<hr />
 @{
-    var loginProviders = SignInManager.GetExternalAuthenticationTypes();
-    if (loginProviders.Count() == 0)
+    var loginProviders = SignInManager.GetExternalAuthenticationTypes();   
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Url.RouteUrl("dashboard") }))
     {
-        <div>
-            <p>
-                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
-                for details on setting up this ASP.NET application to support logging in via external services.
-            </p>
-        </div>
+        @Html.AntiForgeryToken()
+        <ul class="list-inline banner-social-buttons">
+
+            @foreach (AuthenticationDescription p in loginProviders.Where(a => a.Caption != null)) {
+                <li>
+                    <button type="submit" class="btn btn-default btn-lg" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></button>
+                </li>
+            }
+        </ul>
     }
-    else
-    {
-        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Url.RouteUrl("dashboard") }))
-        {
-            @Html.AntiForgeryToken()
-            <div id="socialLoginList">
-                <p>
-                    @foreach (AuthenticationDescription p in loginProviders.Where(a => a.Caption != null))
-                    {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                    }
-                </p>
-            </div>
-        }
-    }
+
+    /*
+    <ul class="list-inline banner-social-buttons">
+        <li>
+            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+        </li>
+        <li>
+            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+        </li>
+        <li>
+            <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+        </li>
+    </ul>
+    */
+
 }

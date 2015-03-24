@@ -24,6 +24,12 @@ module.exports = function (grunt) {
 		    src: '**/*',
 		    dest: 'wwwroot/css',
 		    expand: true
+		  },
+		  scripts: {
+		      cwd: 'Scripts',
+		      src: '**/*',
+		      dest: 'wwwroot/scripts',
+		      expand: true
 		  }
 		}
     });
