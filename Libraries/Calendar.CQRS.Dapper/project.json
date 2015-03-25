@@ -1,0 +1,16 @@
+﻿{
+    "version": "1.0.0-*",
+    "dependencies": {
+        "Dapper": "1.39.0.0",
+        "Autofac": "3.5.2.0",
+        "Calendar.CQRS": "1.0.0-*"
+    },
+
+    "frameworks": {
+        "aspnet50": {
+            "frameworkAssemblies": {
+                "System.Data": ""
+            }
+        }
+    }
+}

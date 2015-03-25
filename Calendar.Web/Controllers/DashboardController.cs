@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using System.Security.Principal;
+
+using Microsoft.AspNet.Mvc;
+
+using Calendar.Web.Models;
 
 namespace Calendar.Web.Controllers
 {
@@ -7,7 +11,11 @@ namespace Calendar.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            //TODO Url.Link coming) 
+            var feedUrl = Url.RouteUrl("feeds", new { feedId = User.Identity.GetUserId() }, 
+                Request.Scheme, Request.Host.ToUriComponent());
+
+            return base.View(new DashboardModel { FeedUrl = feedUrl });
         }
     }
 }

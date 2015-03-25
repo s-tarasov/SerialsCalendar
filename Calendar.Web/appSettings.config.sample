@@ -1,6 +1,19 @@
 {
-    "PreserveLoginUrl" : "true",
-    "ClientValidationEnabled" : "true",
-    "UnobtrusiveJavaScriptEnabled" : "true",
-    "tvrangekey" : "tvrangeApikey"
+    "PreserveLoginUrl": "true",
+    "ClientValidationEnabled": "true",
+    "UnobtrusiveJavaScriptEnabled": "true",
+    "ExternalServices": {
+        "Google": {
+            "ClientId": "***",
+            "ClientSecret": "***"
+        },
+        "TvRange": {
+            "ApiKey": "***"
+        }
+    },
+    "Data": {
+        "DefaultConnection": {
+            "ConnectionString": "***"
+        }
+    }
 }

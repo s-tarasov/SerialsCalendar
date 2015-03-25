@@ -11,28 +11,14 @@ module.exports = function (grunt) {
                     cleanTargetDir: false
                 }
             }
-        },
-        copy: {
-		  img: {
-		    cwd: 'Images',
-		    src: '**/*',
-		    dest: 'wwwroot/images',
-		    expand: true
-		  },
-		  css: {
-		    cwd: 'Styles',
-		    src: '**/*',
-		    dest: 'wwwroot/css',
-		    expand: true
-		  },
-		  scripts: {
-		      cwd: 'Scripts',
-		      src: '**/*',
-		      dest: 'wwwroot/scripts',
-		      expand: true
-		  }
-		}
+        }
     });
+    
+    grunt.registerTask("ts", ["tsd", "tslint", "tsng", "typescript:dev", "clean:tsng"]);
+   
+    grunt.registerTask("default", ["bower:install", "copy", "ts"]);
 
-    grunt.registerTask("default", ["bower:install", "copy"]);
+    grunt.registerTask("release", ["default", "uglify"]);
+
+    require("grunt-ide-support")(grunt);
 };

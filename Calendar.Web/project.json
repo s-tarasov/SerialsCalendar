@@ -9,16 +9,22 @@
         "Microsoft.AspNet.Security.Google": "1.0.0-beta3",
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta3",
         "Microsoft.AspNet.Mvc": "6.0.0-beta3",
+        "Microsoft.AspNet.Razor": "4.0.0-beta3",
         "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
         "Microsoft.Framework.DependencyInjection.Autofac": "1.0.0-beta3",
         "DDay.iCal": "1.0.2.575",
         "Autofac": "3.5.2.0",
         "Calendar.Builder": "1.0.0-*",
-        "Calendar.Identity.MySQL": "1.0.0-*"
+        "Calendar.Identity.MySQL": "1.0.0-*",
+        "Calendar.CQRS": "1.0.0-*",
+        "Calendar.Domain": "1.0.0-*",
+        "Calendar.Data.Implementation": "1.0.0-*",
+        "MySql.Data": "6.9.6.0",
+        "Calendar.CQRS.Dapper": "1.0.0-*"
     },
     "commands": {
         "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
-        "kestrel-windows": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5001"
+        "kestrel-windows": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:80"
     },
     "frameworks": {
         "aspnet50": {
@@ -38,8 +44,8 @@
         "**.kproj",
         "**.user",
         "**.vspscc"
-    ] ,
-  /*  "scripts": {
+    ],
+    /*  "scripts": {
         "postrestore": [ "npm install" ],
         "prepare": [ "grunt bower:install" ]
     } */

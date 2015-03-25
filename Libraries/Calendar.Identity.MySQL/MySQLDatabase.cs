@@ -1,7 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Threading;
 
@@ -13,13 +11,13 @@ namespace Calendar.Identity.MySQL
      /// </summary>
     public class MySQLDatabase : IDisposable
     {
-        private MySqlConnection _connection;
+        private IDbConnection _connection;
 
         /// <summary>
         /// Constructor which takes the connection string name
         /// </summary>
         /// <param name="connectionStringName"></param>
-        public MySQLDatabase(MySqlConnection connection)
+        public MySQLDatabase(IDbConnection connection)
         {            
             _connection = connection;
         }
@@ -101,7 +99,7 @@ namespace Calendar.Identity.MySQL
             {
                 EnsureConnectionOpen();
                 var command = CreateCommand(commandText, parameters);
-                using (MySqlDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     rows = new List<Dictionary<string, string>>();
                     while (reader.Read())
@@ -163,9 +161,9 @@ namespace Calendar.Identity.MySQL
         /// <param name="commandText">The MySQL query to execute</param>
         /// <param name="parameters">Parameters to pass to the MySQL query</param>
         /// <returns></returns>
-        private MySqlCommand CreateCommand(string commandText, Dictionary<string, object> parameters)
+        private IDbCommand CreateCommand(string commandText, Dictionary<string, object> parameters)
         {
-            MySqlCommand command = _connection.CreateCommand();
+            IDbCommand command = _connection.CreateCommand();
             command.CommandText = commandText;
             AddParameters(command, parameters);
 
@@ -177,7 +175,7 @@ namespace Calendar.Identity.MySQL
         /// </summary>
         /// <param name="commandText">The MySQL query to execute</param>
         /// <param name="parameters">Parameters to pass to the MySQL query</param>
-        private static void AddParameters(MySqlCommand command, Dictionary<string, object> parameters)
+        private static void AddParameters(IDbCommand command, Dictionary<string, object> parameters)
         {
             if (parameters == null)
             {

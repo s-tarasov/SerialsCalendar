@@ -1,5 +1,48 @@
 ﻿@{
     ViewBag.Title = "Dashboard";
+    Layout = null; 
 }
 
-Welcome user
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<html lang="en" ng-app="Dashboard">
+<head>
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/dashboard/dashboard.css")" />
+    <script src="@Url.Content("~/lib/jquery/jquery.js")"></script>
+    <script src="@Url.Content("~/lib/angular/angular.js")"></script>
+    <script src="@Url.Content("~/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js")"></script>
+    <script src="@Url.Content("~/scripts/dashboard/dashboard.js")" ></script>
+</head>
+
+<body ng-controller="SerialList.SerialListController">
+    <div class="container">
+        <div class="row">  
+            @await Html.PartialAsync("_LoginPartial")         
+            <input type="text" readonly="readonly" value="@Model.FeedUrl" class="form-control" />
+            <br/>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text"
+                       ng-model="newSerial"
+                       placeholder="enter serial name"
+                       typeahead="serial as serial.Alias for serial in actions.getSerials($viewValue)"
+                       typeahead-loading="loadingLocations"
+                       typeahead-on-select="actions.addSerial($item)"
+                       class="form-control">
+                <i ng-show="loadingSerials" class="glyphicon glyphicon-refresh"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <ul>
+                    <li ng-repeat="serial in serials | filter:query">
+                        {{serial.Alias}} <a class="close" ng-click="actions.removeSerial(serial)">x</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "version": "1.0.0-*",
+    "dependencies": {
+        "Calendar.CQRS": "1.0.0-*",
+        "Calendar.Common": "1.0.0-*"
+    },
+
+    "frameworks": {
+        "aspnet50": {
+            "dependencies": {
+            }
+        }
+    }
+}

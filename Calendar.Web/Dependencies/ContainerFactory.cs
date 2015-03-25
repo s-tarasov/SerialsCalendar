@@ -3,6 +3,8 @@ using Microsoft.Framework.DependencyInjection.Autofac;
 
 using Autofac;
 
+using Calendar.Web.Dependencies.Configurators;
+
 namespace Calendar.Web.Dependencies
 {
     public static class ContainerFactory
@@ -22,8 +24,10 @@ namespace Calendar.Web.Dependencies
                 builder,
                 services);
 
-            builder.RegisterModule(new CachingModule());
-            builder.RegisterModule(new CalendarBuilderModule());
+            builder
+                .RegisterModule(new CachingModule())
+                .RegisterModule(new DataModule())
+                .RegisterModule(new CalendarBuilderModule());
         }
     }
 }

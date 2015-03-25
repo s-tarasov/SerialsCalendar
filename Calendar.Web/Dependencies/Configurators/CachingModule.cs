@@ -2,7 +2,7 @@
 
 using Calendar.Caching;
 
-namespace Calendar.Web.Dependencies
+namespace Calendar.Web.Dependencies.Configurators
 {
     public class CachingModule : Module
     {

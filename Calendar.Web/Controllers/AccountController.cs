@@ -32,6 +32,7 @@ namespace Calendar.Web.Controllers
         [AllowAnonymous]
         public IActionResult LogIn()
         {
+            //TODO how setup loginUrl in ASP.NET MVC 6?
             return RedirectToAction("Index", "Welcome");
         }
 

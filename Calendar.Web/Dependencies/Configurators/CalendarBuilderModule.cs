@@ -9,7 +9,7 @@ using Calendar.Builder;
 using Calendar.Web.Configuration;
 using Calendar.Builder.ReleaseProviders;
 
-namespace Calendar.Web.Dependencies
+namespace Calendar.Web.Dependencies.Configurators
 {
     public class CalendarBuilderModule : Module
     {
@@ -19,14 +19,14 @@ namespace Calendar.Web.Dependencies
 
             builder.RegisterType<TvRageComReleaseProvider>()
                 .As<ReleaseProviderBase>()
-                .WithParameter("apiKey", ConfigurationProvider.Get<string>("tvrangekey"))
+                .WithParameter("apiKey", ConfigurationProvider.Get<string>("ExternalServices:TvRange:apiKey"))
                 .WithParameter("minDate", DateTime.Today.AddYears(-1));
 
             builder.Register(ctx => new HttpClient());
 
             builder.RegisterType<TvRageComSerialIdProvider>()       
                 .Keyed<ISerialIdProvider>("serialIdProvider")
-                .WithParameter("apiKey", ConfigurationProvider.Get<string>("tvrangekey"));
+                .WithParameter("apiKey", ConfigurationProvider.Get<string>("ExternalServices:TvRange:apiKey"));
 
             builder.RegisterType<CachedSerialIdProvider>()
                 .As<ISerialIdProvider>()

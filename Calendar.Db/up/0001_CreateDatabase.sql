@@ -1,9 +1,3 @@
-CREATE TABLE `Roles` (
-  `Id` varchar(128) NOT NULL,
-  `Name` varchar(256) NOT NULL,
-  PRIMARY KEY (`Id`)
-);
-
 CREATE TABLE `Users` (
   `Id` varchar(128) NOT NULL,
   `Email` varchar(256) DEFAULT NULL,
@@ -20,17 +14,6 @@ CREATE TABLE `Users` (
   PRIMARY KEY (`Id`)
 );
 
-CREATE TABLE `UserClaims` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `UserId` varchar(128) NOT NULL,
-  `ClaimType` longtext,
-  `ClaimValue` longtext,
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `Id` (`Id`),
-  KEY `UserId` (`UserId`),
-  CONSTRAINT `ApplicationUser_Claims` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
-);
-
 CREATE TABLE `UserLogins` (
   `LoginProvider` varchar(128) NOT NULL,
   `ProviderKey` varchar(128) NOT NULL,
@@ -40,11 +23,9 @@ CREATE TABLE `UserLogins` (
   CONSTRAINT `ApplicationUser_Logins` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
-CREATE TABLE `UserRoles` (
+CREATE TABLE `UserSerials` (
   `UserId` varchar(128) NOT NULL,
-  `RoleId` varchar(128) NOT NULL,
-  PRIMARY KEY (`UserId`,`RoleId`),
-  KEY `IdentityRole_Users` (`RoleId`),
-  CONSTRAINT `ApplicationUser_Roles` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `IdentityRole_Users` FOREIGN KEY (`RoleId`) REFERENCES `Roles` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ;
+  `SerialId` varchar(256) NOT NULL,
+  PRIMARY KEY (`UserId`, `SerialId`),
+  CONSTRAINT `UserSerials_UserId` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);

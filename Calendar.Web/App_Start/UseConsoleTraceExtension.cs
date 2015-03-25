@@ -11,11 +11,14 @@ namespace Calendar.Web.App_Start
 #if DEBUG
             return app.Use(async (context, next) =>
             {
-                Console.WriteLine(context.Request.Path);
-
                 try
                 {
                     await next();
+                        if (context.Response.StatusCode == 404) {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                        }
+                        Console.WriteLine(context.Response.StatusCode + ":" + context.Request.Path);
+                        Console.ResetColor();
                 }
                 catch (Exception ex)
                 {
