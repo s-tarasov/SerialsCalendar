@@ -1,6 +1,7 @@
-﻿using System.Security.Principal;
+﻿using System.Security.Claims;
 
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
 
 using Calendar.Web.Models;
 
@@ -12,7 +13,7 @@ namespace Calendar.Web.Controllers
         public IActionResult Index()
         {
             //TODO Url.Link coming) 
-            var feedUrl = Url.RouteUrl("feeds", new { feedId = User.Identity.GetUserId() }, 
+            var feedUrl = Url.RouteUrl("feeds", new { feedId = User.GetUserId() }, 
                 Request.Scheme, Request.Host.ToUriComponent());
 
             return base.View(new DashboardModel { FeedUrl = feedUrl });

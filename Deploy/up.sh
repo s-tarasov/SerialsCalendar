@@ -1,1 +1,1 @@
-sudo docker run -t -p 5004:5004 -v $(pwd):/configs calendar /port=5004
+docker run -t -p 5004:5004 -v $(pwd):/configs calendar /port=5004

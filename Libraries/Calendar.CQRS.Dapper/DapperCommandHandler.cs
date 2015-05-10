@@ -12,7 +12,7 @@ namespace Calendar.CQRS.Dapper
     public class DapperCommandHandler<T> : ICommandHandler<T>
         where T : ICommand
     {
-        private static readonly string _procedureName = typeof(T).Name;
+        private readonly string _procedureName = typeof(T).Name;
 
         private Func<Owned<IDbConnection>> _connectionFactory;
 

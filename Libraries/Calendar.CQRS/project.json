@@ -4,13 +4,8 @@
     },
 
     "frameworks" : {
-        "aspnet50" : { 
+        "dnx451" : { 
             "dependencies": {
-            }
-        },
-        "aspnetcore50" : { 
-            "dependencies": {
-                "System.Runtime": "4.0.20-beta-22523"
             }
         }
     }

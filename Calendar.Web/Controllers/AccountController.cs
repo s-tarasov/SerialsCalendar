@@ -1,11 +1,12 @@
 ﻿using System.Security.Claims;
-using System.Security.Principal;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 
 using Calendar.Web.Models;
+using Microsoft.AspNet.Authorization;
 
 namespace Calendar.Web.Controllers
 {
@@ -50,13 +51,13 @@ namespace Calendar.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null)
         {
-            var loginInfo = await SignInManager.GetExternalLoginInfoAsync(cancellationToken: Context.RequestAborted);
+            var loginInfo = await SignInManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return RedirectToAction("Index", "Welcome");
             }
 
-            var result = await SignInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, isPersistent: false, cancellationToken: Context.RequestAborted);
+            var result = await SignInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
                 return RedirectToLocal(returnUrl);
@@ -65,7 +66,7 @@ namespace Calendar.Web.Controllers
             {
                 ViewBag.ReturnUrl = returnUrl;
                 ViewBag.LoginProvider = loginInfo.LoginProvider;
-                var email = loginInfo.ExternalIdentity.FindFirstValue(ClaimTypes.Email);
+                var email = loginInfo.ExternalPrincipal.FindFirstValue(ClaimTypes.Email);
 
                 return await CreateAccount(email, returnUrl);
             }
@@ -73,22 +74,22 @@ namespace Calendar.Web.Controllers
 
         private async Task<IActionResult> CreateAccount(string email, string returnUrl = null)
         {
-            var info = await SignInManager.GetExternalLoginInfoAsync(cancellationToken: Context.RequestAborted);
+            var info = await SignInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 return View("ExternalLoginFailure");
             }
             var user = new ApplicationUser { UserName = email, Email = email };
-            await UserManager.CreateAsync(user, cancellationToken: Context.RequestAborted);
-            await UserManager.AddLoginAsync(user, info, cancellationToken: Context.RequestAborted);
-            await SignInManager.SignInAsync(user, isPersistent: false, cancellationToken: Context.RequestAborted);
+            await UserManager.CreateAsync(user);
+            await UserManager.AddLoginAsync(user, info);
+            await SignInManager.SignInAsync(user, isPersistent: false);
 
             return RedirectToLocal(returnUrl);
         }
 
         private async Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await UserManager.FindByIdAsync(Context.User.Identity.GetUserId());
+            return await UserManager.FindByIdAsync(Context.User.GetUserId());
         }
 
         public enum ManageMessageId

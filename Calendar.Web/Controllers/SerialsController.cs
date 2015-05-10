@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Security.Principal;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Microsoft.AspNet.Mvc;
@@ -9,6 +9,7 @@ using Microsoft.AspNet.Mvc;
 using Calendar.CQRS;
 using Calendar.Domain.Users;
 using Calendar.Web.Models;
+using Microsoft.AspNet.Authorization;
 
 namespace Calendar.Web.Controllers
 {
@@ -68,7 +69,7 @@ namespace Calendar.Web.Controllers
 
         private string GetUserId()
         {
-            return User.Identity.GetUserId();
+            return User.GetUserId();
         }
     }
 }

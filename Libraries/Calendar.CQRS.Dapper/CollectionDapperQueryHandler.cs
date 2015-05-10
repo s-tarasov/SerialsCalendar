@@ -13,7 +13,7 @@ namespace Calendar.CQRS.Dapper
     public class CollectionDapperQueryHandler<TQuery, TResult> : IQueryHandler<TQuery, IEnumerable<TResult>>
         where TQuery : IQuery<IEnumerable<TResult>>
     {
-        private static readonly string _procedureName = typeof(TQuery).Name;
+        private readonly string _procedureName = typeof(TQuery).Name;
 
         private Func<Owned<IDbConnection>> _connectionFactory;
 

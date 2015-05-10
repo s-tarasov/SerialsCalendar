@@ -2,8 +2,7 @@ FROM microsoft/aspnet
 
 COPY . /app
 WORKDIR /app/Calendar.Web
-RUN ["kpm", "restore"]
-RUN ["kpm", "build", "--configuration=Release"]
+RUN ["dnu", "restore"]
 
 COPY Deploy/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

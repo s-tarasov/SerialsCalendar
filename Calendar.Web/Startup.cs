@@ -3,6 +3,8 @@ using System.IO;
 
 using Microsoft.AspNet.Builder;
 
+using Microsoft.Framework.DependencyInjection;
+
 using Autofac;
 
 using Calendar.Web;
@@ -11,17 +13,18 @@ using Calendar.Web.Dependencies;
 
 public class Startup
 {
+    public IServiceProvider ConfigureServices(IServiceCollection services) {
+        ApplicationConfiguration.Initialize();
+        ServiceConfigurator.Configure(services);
+
+        var container = ContainerFactory.Create(services);
+
+        return container.Resolve<IServiceProvider>();
+    }
+
     public void Configure(IApplicationBuilder app)
     {
         app
-            .InitConfiguration()
-            .UseServices(services => {
-                ServiceConfigurator.Configure(services);
-
-                var container = ContainerFactory.Create(services);
-
-                return container.Resolve<IServiceProvider>();
-            })
             .UseConsoleTrace()
             .UseStaticFiles()
             .UseIdentity()

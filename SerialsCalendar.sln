@@ -1,29 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{5C994CDF-1616-425D-BB76-03FF64736196}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Web", "Calendar.Web\Calendar.Web.kproj", "{35261A41-F9FE-49AA-B603-D2442F9A3BCC}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Web", "Calendar.Web\Calendar.Web.xproj", "{35261A41-F9FE-49AA-B603-D2442F9A3BCC}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Caching", "Libraries\Calendar.Caching\Calendar.Caching.kproj", "{EF364C54-23AA-4587-B565-EBF661D8FFE7}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Caching", "Libraries\Calendar.Caching\Calendar.Caching.xproj", "{EF364C54-23AA-4587-B565-EBF661D8FFE7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Builder", "Libraries\Calendar.Builder\Calendar.Builder.kproj", "{FBFDD84E-639A-4C60-9104-751D8D0F2EC3}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Builder", "Libraries\Calendar.Builder\Calendar.Builder.xproj", "{FBFDD84E-639A-4C60-9104-751D8D0F2EC3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Identity.MySQL", "Libraries\Calendar.Identity.MySQL\Calendar.Identity.MySQL.kproj", "{0E65E107-9B30-4BF6-8235-D56166C9AD60}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Identity.MySQL", "Libraries\Calendar.Identity.MySQL\Calendar.Identity.MySQL.xproj", "{0E65E107-9B30-4BF6-8235-D56166C9AD60}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Domain", "Calendar.Domain\Calendar.Domain.kproj", "{64053A76-D97A-4E97-87E2-68E71C15186D}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Domain", "Calendar.Domain\Calendar.Domain.xproj", "{64053A76-D97A-4E97-87E2-68E71C15186D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.CQRS", "Libraries\Calendar.CQRS\Calendar.CQRS.kproj", "{32FC6BE7-D89D-4F54-BD8A-9C7094548709}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.CQRS", "Libraries\Calendar.CQRS\Calendar.CQRS.xproj", "{32FC6BE7-D89D-4F54-BD8A-9C7094548709}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Data.Implementation", "Calendar.Data.Implementation\Calendar.Data.Implementation.kproj", "{4DC1E16A-3D20-42A9-8BAC-77EAFDCCDA18}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Data.Implementation", "Calendar.Data.Implementation\Calendar.Data.Implementation.xproj", "{4DC1E16A-3D20-42A9-8BAC-77EAFDCCDA18}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Common", "Libraries\Calendar.Common\Calendar.Common.kproj", "{AF353245-0FDB-4B80-98CA-561D1F0856EA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Common", "Libraries\Calendar.Common\Calendar.Common.xproj", "{AF353245-0FDB-4B80-98CA-561D1F0856EA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Db", "Calendar.Db\Calendar.Db.kproj", "{0696833F-14D9-4EA5-8D3D-5DD3C23648B9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.Db", "Calendar.Db\Calendar.Db.xproj", "{0696833F-14D9-4EA5-8D3D-5DD3C23648B9}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.CQRS.Dapper", "Libraries\Calendar.CQRS.Dapper\Calendar.CQRS.Dapper.kproj", "{58755F92-88D6-4846-9E7D-289037084D44}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Calendar.CQRS.Dapper", "Libraries\Calendar.CQRS.Dapper\Calendar.CQRS.Dapper.xproj", "{58755F92-88D6-4846-9E7D-289037084D44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
