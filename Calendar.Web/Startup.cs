@@ -2,24 +2,25 @@ using System;
 using System.IO;
 
 using Microsoft.AspNet.Builder;
-
+using Microsoft.AspNet.Hosting;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
-
-using Autofac;
+using Microsoft.Framework.Runtime;
 
 using Calendar.Web;
 using Calendar.Web.App_Start;
-using Calendar.Web.Dependencies;
 
 public class Startup
 {
+    private IConfiguration _configuration;
+
+    public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+    {
+        _configuration = ApplicationConfiguration.InitializeAndGetConfiguration(appEnv);
+    }
+
     public IServiceProvider ConfigureServices(IServiceCollection services) {
-        ApplicationConfiguration.Initialize();
-        ServiceConfigurator.Configure(services);
-
-        var container = ContainerFactory.Create(services);
-
-        return container.Resolve<IServiceProvider>();
+        return ServiceConfigurator.Configure(services, _configuration);
     }
 
     public void Configure(IApplicationBuilder app)

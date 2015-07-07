@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.Framework.DependencyInjection;
 
@@ -7,19 +7,13 @@ namespace Calendar.Identity.MySQL
 {
     public class IdentityMySqlServices
     {
-        public static IServiceCollection GetDefaultServices(Type userType, Type roleType)
+        public static IEnumerable<ServiceDescriptor> GetDefaultServices(Type userType, Type roleType)
         {
-            Type userStoreType = typeof(UserStore<,>).MakeGenericType(userType, roleType);
-            Type roleStoreType = typeof(RoleStore<>).MakeGenericType(roleType);
+            var userStoreType = typeof(UserStore<,>).MakeGenericType(userType, roleType);
+            var roleStoreType = typeof(RoleStore<>).MakeGenericType(roleType);
 
-            var services = new ServiceCollection();
-            services.AddScoped(
-                typeof(IUserStore<>).MakeGenericType(userType),
-                userStoreType);
-            services.AddScoped(
-                typeof(IRoleStore<>).MakeGenericType(roleType),
-                roleStoreType);
-            return services;
+            yield return new ServiceDescriptor(typeof(IUserStore<>).MakeGenericType(userType), userStoreType, ServiceLifetime.Scoped);
+            yield return new ServiceDescriptor(typeof(IRoleStore<>).MakeGenericType(roleType), roleStoreType, ServiceLifetime.Scoped);
         }
     }
 }

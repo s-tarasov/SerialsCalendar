@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 
 namespace Calendar.Web.Configuration
 {     
     public class ConfigurationAdapter : IConfigurationProvider
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public ConfigurationAdapter(IConfiguration configuration)
         {

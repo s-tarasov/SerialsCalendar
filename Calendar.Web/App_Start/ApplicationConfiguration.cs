@@ -1,4 +1,5 @@
-﻿using Microsoft.Framework.ConfigurationModel;
+﻿using Microsoft.Framework.Configuration;
+using Microsoft.Framework.Runtime;
 
 using Calendar.Web.Configuration;
 
@@ -6,13 +7,16 @@ namespace Calendar.Web.App_Start
 {
     public static class ApplicationConfiguration
     {
-        public static void Initialize() {
-            var configuration = new Microsoft.Framework.ConfigurationModel.Configuration();
-            configuration.AddJsonFile("appSettings.json");
-            configuration.AddEnvironmentVariables();
+        public static IConfiguration InitializeAndGetConfiguration(IApplicationEnvironment appEnv) {
+            var configuration = new ConfigurationBuilder(appEnv.ApplicationBasePath)
+                .AddJsonFile("appSettings.json")
+                .AddEnvironmentVariables()
+                .Build();
 
             ConfigurationProvider.SetConfigurationProvider(
                 new ConfigurationAdapter(configuration));
+
+            return configuration;
         }
     }
 }
