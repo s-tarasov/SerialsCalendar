@@ -34,6 +34,8 @@ namespace Calendar.Web.App_Start
 
             services.AddMvc();
 
+            services.AddApplicationInsightsTelemetry(configuration);
+
             var container = ContainerFactory.Create(services);
 
             return container.Resolve<IServiceProvider>();

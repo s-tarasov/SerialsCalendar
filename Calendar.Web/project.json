@@ -31,6 +31,9 @@
     },
     "frameworks": {
         "dnx451": {
+            "dependencies": {
+                "Microsoft.ApplicationInsights.AspNet" : "1.0.0-beta5"
+            },
             "frameworkAssemblies": {
                 "System.Net.Http": ""
             }

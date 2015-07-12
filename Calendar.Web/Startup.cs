@@ -26,11 +26,13 @@ public class Startup
     public void Configure(IApplicationBuilder app)
     {
         app
+            .UseApplicationInsightsRequestTelemetry()
             .UseConsoleTrace()
             .UseStaticFiles()
             .UseIdentity()
             .UseGoogleAuthentication()
-            .UseMvc(RouteConfig.RegisterRoutes);
+            .UseMvc(RouteConfig.RegisterRoutes)
+            .UseApplicationInsightsExceptionTelemetry();
 
         //TODO remove fix after update to rc1
         var temp = Environment.GetEnvironmentVariable("ASPNET_TEMP");

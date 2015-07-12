@@ -11,6 +11,9 @@
             "ApiKey": "***"
         }
     },
+    "ApplicationInsights": {
+        "InstrumentationKey": "***"
+    },
     "Data": {
         "DefaultConnection": {
             "ConnectionString": "***"
