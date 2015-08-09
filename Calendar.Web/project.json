@@ -1,20 +1,20 @@
 {
     "webroot": "wwwroot",
     "dependencies": {
-        "Kestrel": "1.0.0-beta5",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta5",
-        "Microsoft.AspNet.Identity": "3.0.0-beta5",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta5",
-        "Microsoft.AspNet.Http": "1.0.0-beta5",
-        "Microsoft.AspNet.Http.Abstractions": "1.0.0-beta5",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta5",
-        "Microsoft.AspNet.Authentication.Google": "1.0.0-beta5",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-beta5",
-        "Microsoft.AspNet.Mvc": "6.0.0-beta5",
-        "Microsoft.AspNet.Razor": "4.0.0-beta5",
-        "Microsoft.Framework.Configuration.Json": "1.0.0-beta5",
-        "Microsoft.Framework.DependencyInjection": "1.0.0-beta5",
-        "Microsoft.Framework.DependencyInjection.Autofac": "1.0.0-beta5",
+        "Kestrel": "1.0.0-beta6",
+        "Microsoft.AspNet.Diagnostics": "1.0.0-beta6",
+        "Microsoft.AspNet.Identity": "3.0.0-beta6",
+        "Microsoft.AspNet.Hosting": "1.0.0-beta6",
+        "Microsoft.AspNet.Http": "1.0.0-beta6",
+        "Microsoft.AspNet.Http.Abstractions": "1.0.0-beta6",
+        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
+        "Microsoft.AspNet.Authentication.Google": "1.0.0-beta6",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-beta6",
+        "Microsoft.AspNet.Mvc": "6.0.0-beta6",
+        "Microsoft.AspNet.Razor": "4.0.0-beta6",
+        "Microsoft.Framework.Configuration.Json": "1.0.0-beta6",
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta6",
+        "Microsoft.Framework.DependencyInjection.Autofac": "1.0.0-beta6",
         "DDay.iCal": "1.0.2.575",
         "Autofac": "3.5.2.0",
         "Calendar.Builder": "1.0.0-*",
@@ -27,12 +27,12 @@
     },
     "commands": {
         "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
-        "kestrel-windows": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:80"
+        "kestrel-windows": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:81"
     },
     "frameworks": {
         "dnx451": {
             "dependencies": {
-                "Microsoft.ApplicationInsights.AspNet" : "1.0.0-beta5"
+                "Microsoft.ApplicationInsights.AspNet" : "1.0.0-beta6"
             },
             "frameworkAssemblies": {
                 "System.Net.Http": ""

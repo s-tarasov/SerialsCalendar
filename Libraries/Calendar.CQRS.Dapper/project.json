@@ -7,7 +7,7 @@
     "frameworks": {
         "dnx451": {
             "dependencies": {
-                "Dapper": "1.41.0-beta5",
+                "Dapper": "1.41-beta5",
                 "Autofac": "3.5.2.0"
             },
             "frameworkAssemblies": {

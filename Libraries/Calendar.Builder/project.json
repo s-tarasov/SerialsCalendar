@@ -6,7 +6,7 @@
     "frameworks": {
         "dnx451": {
             "dependencies": {
-                "HtmlAgilityPack": "1.4.6"
+                "HtmlAgilityPack": "1.4.9"
             },
             "frameworkAssemblies": {
                 "System.Xml": "",

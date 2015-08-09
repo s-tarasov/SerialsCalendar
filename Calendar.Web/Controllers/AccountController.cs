@@ -24,9 +24,10 @@ namespace Calendar.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult LogOff()
+        public async Task<IActionResult> LogOff()
         {
-            SignInManager.SignOut();
+            await SignInManager.SignOutAsync();
+
             return RedirectToAction("Index", "Welcome");
         }
 
