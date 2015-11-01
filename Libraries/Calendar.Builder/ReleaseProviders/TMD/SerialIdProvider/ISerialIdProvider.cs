@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Calendar.Builder.ReleaseProviders.TvRage
+namespace Calendar.Builder.ReleaseProviders.TMD
 {
     public interface ISerialIdProvider
     {

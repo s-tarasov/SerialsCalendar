@@ -2,7 +2,7 @@
 
 using Calendar.Caching;
 
-namespace Calendar.Builder.ReleaseProviders.TvRage
+namespace Calendar.Builder.ReleaseProviders.TMD
 {
     public class CachedSerialIdProvider : ISerialIdProvider
     {

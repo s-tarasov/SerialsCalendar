@@ -8,6 +8,8 @@ using Calendar.Builder;
 
 using Calendar.Web.Configuration;
 using Calendar.Builder.ReleaseProviders;
+using Calendar.Builder.ReleaseProviders.TMD;
+using TMDbLib.Client;
 
 namespace Calendar.Web.Dependencies.Configurators
 {
@@ -17,16 +19,14 @@ namespace Calendar.Web.Dependencies.Configurators
         {
             builder.RegisterType<ReleaseEventCalendarBuilder>();
 
-            builder.RegisterType<TvRageComReleaseProvider>()
+            builder.RegisterType<TMDReleaseProvider>()
                 .As<ReleaseProviderBase>()
-                .WithParameter("apiKey", ConfigurationProvider.Get<string>("ExternalServices:TvRange:apiKey"))
                 .WithParameter("minDate", DateTime.Today.AddYears(-1));
 
-            builder.Register(ctx => new HttpClient());
+            builder.Register(ctx => new TMDbClient("fe5f5be42e7abbb3079056701867b87f"));
 
-            builder.RegisterType<TvRageComSerialIdProvider>()       
-                .Keyed<ISerialIdProvider>("serialIdProvider")
-                .WithParameter("apiKey", ConfigurationProvider.Get<string>("ExternalServices:TvRange:apiKey"));
+            builder.RegisterType<TMDSerialIdProvider>()       
+                .Keyed<ISerialIdProvider>("serialIdProvider");
 
             builder.RegisterType<CachedSerialIdProvider>()
                 .As<ISerialIdProvider>()

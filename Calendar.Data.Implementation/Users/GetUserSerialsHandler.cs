@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Calendar.CQRS;
 using Calendar.Domain.Users;
-using Calendar.Builder.ReleaseProviders;
+using Calendar.Builder.ReleaseProviders.TMD;
 
 namespace Calendar.Data.Implementation.Users
 {

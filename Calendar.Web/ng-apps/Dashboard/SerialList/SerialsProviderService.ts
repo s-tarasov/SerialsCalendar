@@ -28,25 +28,17 @@ module SerialList {
         }
 
         findSerials(str): Promise<Serial[]>{
-            var sourceUrl = "http://services.tvrage.com/feeds/search.php?key=285i2wboRoru1Z38syH3&show="
+            var sourceUrl = "//api.themoviedb.org/3/search/tv?api_key=fe5f5be42e7abbb3079056701867b87f&query="
                 + encodeURIComponent(str);
 
-             return this._$http.get<any>(
-                "//query.yahooapis.com/v1/public/yql?q="
-                + encodeURIComponent("select show.name from xml where url='" + sourceUrl + "'")
-                + "&format=json")
-                .then((responce) => {
-                    if (!responce.data.query.count) {
+             return this._$http.get<any>(sourceUrl)
+                 .then((responce) => {
+                    if (!responce.data.results) {
                         return [];
                     }
 
-                    var results = responce.data.query.results.Results;
-                    if (results.show) {
-                        results = [results];
-                    }
-
-                    return results
-                        .map(r => r.show.name)
+                    return responce.data.results
+                        .map(r => r.name)
                         .map(r => new Serial(r, r));
                 });
         }

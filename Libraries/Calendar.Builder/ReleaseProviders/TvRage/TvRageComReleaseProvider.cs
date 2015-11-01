@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 
-namespace Calendar.Builder.ReleaseProviders
+namespace Calendar.Builder.ReleaseProviders.TvRage
 {
     public class TvRageComReleaseProvider : ReleaseProviderBase
     {
