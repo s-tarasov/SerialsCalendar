@@ -7,6 +7,7 @@ using Calendar.Builder;
 using Calendar.CQRS;
 using Calendar.Domain.Users;
 using Calendar.Web.ViewResults;
+using Calendar.Web.Filters;
 
 namespace Calendar.Web.Controllers
 {
@@ -24,6 +25,7 @@ namespace Calendar.Web.Controllers
             _dataDispather = dataDispather;
         }
 
+        [FeedCache]
         public async Task<ActionResult> Feed(string feedId)
         {
             var serialIds = await _dataDispather.ExecuteAsync(new GetUserSerialIds(feedId));
