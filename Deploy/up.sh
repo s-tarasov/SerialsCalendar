@@ -1,1 +1,1 @@
-docker run --name calendar -t -p 5004:5004 -v $(pwd):/configs calendar /port=5004
+docker run --name calendar -t -p 5004:5004 --link mysql:mysql -v $(pwd):/configs calendar /port=5004
