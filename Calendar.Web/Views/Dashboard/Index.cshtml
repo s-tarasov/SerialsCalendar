@@ -8,27 +8,28 @@
 <html lang="en" ng-app="Dashboard">
 <head>
     <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/dashboard/dashboard.css")" />
-    <script src="@Url.Content("~/lib/jquery/jquery.js")"></script>
-    <script src="@Url.Content("~/lib/angular/angular.js")"></script>
-    <script src="@Url.Content("~/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js")"></script>
-    <script src="@Url.Content("~/scripts/dashboard/dashboard.js")" ></script>
+    <link rel="stylesheet" href="@Url.Content("~/css/dashboard/dashboard.css")" />  
 </head>
 
 <body ng-controller="SerialList.SerialListController">
     <div class="container">
         <div class="row">  
             @await Html.PartialAsync("_LoginPartial")         
-            <input type="text" readonly="readonly" value="@Model.FeedUrl" class="form-control" />
-            <br/>
-        </div>
+            <div class="col-md-3">
+                <input id="feed-url" type="text" readonly="readonly" value="@Model.FeedUrl" class="form-control" />
+            </div>
+                <div class="col-md-3">
+                    <button class="btn" data-clipboard-target="#feed-url">
+                        Copy to clipboard
+                    </button>
+                </div>
+         </div>
         <div class="row">
             <div class="col-md-3">
                 <input type="text"
                        ng-model="newSerial"
                        placeholder="enter serial name"
                        typeahead="serial as serial.Alias for serial in actions.getSerials($viewValue)"
-                       typeahead-loading="loadingLocations"
                        typeahead-on-select="actions.addSerial($item)"
                        class="form-control">
                 <i ng-show="loadingSerials" class="glyphicon glyphicon-refresh"></i>
@@ -44,5 +45,13 @@
             </div>
         </div>
     </div>
+    <script src="@Url.Content("~/lib/jquery/jquery.js")"></script>
+    <script src="@Url.Content("~/lib/angular/angular.js")"></script>
+    <script src="@Url.Content("~/lib/clipboard/clipboard.js")"></script>
+    <script src="@Url.Content("~/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js")"></script>
+    <script src="@Url.Content("~/scripts/dashboard/dashboard.js")"></script>
+    <script>
+        new Clipboard('.btn');
+    </script>
 </body>
 </html>

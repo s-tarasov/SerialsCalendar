@@ -21,7 +21,6 @@ module SerialList {
             serialsProvider.getAll()
                 .then((serials) => {
                     $scope.serials = serials;
-                    $scope.$apply();
 
                     this._ready = true;
                 });

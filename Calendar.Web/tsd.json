@@ -5,16 +5,16 @@
   "ref": "master",
   "installed": {
     "es6-promise/es6-promise.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+      "commit": "19b6e80e68f7dec21e453c225680fe3d9899e946"
     },
     "angularjs/angular.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+      "commit": "19b6e80e68f7dec21e453c225680fe3d9899e946"
     },
     "angularjs/angular-route.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+      "commit": "19b6e80e68f7dec21e453c225680fe3d9899e946"
     },
     "jquery/jquery.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+      "commit": "19b6e80e68f7dec21e453c225680fe3d9899e946"
     }
   }
 }
