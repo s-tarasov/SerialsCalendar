@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Debug Kestrel only": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost/",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,9 +1,6 @@
 {
+    "projects": [ "src", "src/Libraries" ],
     "sdk": {
-        "version": "1.0.0-beta6"
-    },
-    "sources": [
-        "wrap",
-        "Libraries"
-    ]
+        "version": "2.0.0-preview2-006497"
+    }
 }

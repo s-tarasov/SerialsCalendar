@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk.Web" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <WarningsAsErrors>true</WarningsAsErrors>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>Calendar.Web</AssemblyName>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\Calendar.Builder\Calendar.Builder.csproj" />
+    <ProjectReference Include="..\Libraries\Calendar.Identity.MySQL\Calendar.Identity.MySQL.csproj" />
+    <ProjectReference Include="..\Libraries\Calendar.CQRS\Calendar.CQRS.csproj" />
+    <ProjectReference Include="..\Calendar.Domain\Calendar.Domain.csproj" />
+    <ProjectReference Include="..\Calendar.Data.Implementation\Calendar.Data.Implementation.csproj" />
+    <ProjectReference Include="..\Libraries\Calendar.CQRS.Dapper\Calendar.CQRS.Dapper.csproj" />
+    <ProjectReference Include="..\Libraries\Calendar.Caching\Calendar.Caching.csproj">
+      <FromP2P>true</FromP2P>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Calendar.Common\Calendar.Common.csproj">
+      <FromP2P>true</FromP2P>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="NETStandard.Library">
+      <Version>2.0.0-preview2-25401-01</Version>
+    </PackageReference>
+    <PackageReference Include="Ical.Net" Version="3.0.11-net-core-beta" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="MySql.Data">
+      <Version>7.0.7-m61</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.All">
+      <Version>2.0.0-preview2-final</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="BundlerMinifier.Core">
+      <Version>2.2.301</Version>
+    </DotNetCliToolReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+</Project>

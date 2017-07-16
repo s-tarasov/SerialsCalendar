@@ -1,13 +1,17 @@
-FROM microsoft/aspnet:1.0.0-beta6
+# Stage 1
+FROM microsoft/aspnetcore-build:2.0.0-preview2-jessie AS builder
+WORKDIR /app/
 
-COPY . /app
-WORKDIR /app/Calendar.Web
+# copy csproj and restore as distinct layers
+COPY src/Calendar.Web/Calendar.Web.csproj ./src/Calendar.Web/Calendar.Web.csproj
+RUN dotnet restore ./src/Calendar.Web/Calendar.Web.csproj
 
-COPY /Deploy/docker-entrypoint.sh /entrypoint.sh
+# copy everything else and build
+COPY . .
+RUN dotnet publish --output /app/ --configuration Release
 
-#RUN dnu restore	
-RUN bash -c ' while ! dnu restore; do :; done '
-
-ENTRYPOINT ["/entrypoint.sh"]
-
-EXPOSE 5004
+# Stage 2
+FROM microsoft/aspnetcore:2.0.0-preview2-jessie
+WORKDIR /app
+COPY --from=builder /app .
+ENTRYPOINT ["dotnet", "Calendar.Web.dll"]

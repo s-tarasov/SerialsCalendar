@@ -1,2 +1,7 @@
 .git
 Deploy/*.image
+**/bin/
+**/obj/
+**/node_modules/
+**/bower_components/
+.vs
