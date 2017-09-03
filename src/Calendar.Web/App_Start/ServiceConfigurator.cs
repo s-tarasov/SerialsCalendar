@@ -27,7 +27,7 @@ namespace Calendar.Web.App_Start
         public static IServiceProvider Configure(IServiceCollection services, IConfiguration configuration)
         {
             // https://console.developers.google.com/project
-            services.AddGoogleAuthentication(o =>
+            services.AddAuthentication().AddGoogle(o =>
             {
                 o.ClientId = configuration["ExternalServices:Google:ClientId"];
                 o.ClientSecret = configuration["ExternalServices:Google:ClientSecret"];
