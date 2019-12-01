@@ -1,28 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 using Calendar.Common.Extensions;
 using Calendar.CQRS;
 
 namespace Calendar.Domain.Users
 {
-    public class GetUserSerialIds : IQuery<IEnumerable<string>>
+    public class GetUserSerialIds : IQuery<string[]>
     {
-        private readonly string _userId;
-
         public GetUserSerialIds(string userId)
         {
             Debug.Assert(!userId.IsNullOrEmpty());
 
-            _userId = userId;
+            UserId = userId;
         }
 
-        public string UserId
-        {
-            get
-            {
-                return _userId;
-            }
-        }
+        public string UserId { get; }
     }
 }

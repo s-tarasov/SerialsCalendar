@@ -7,26 +7,17 @@ namespace Calendar.Domain.Users
 {
     public class AddSerial : ICommand
     {
-        private readonly string _serialId;
-        private readonly string _userId;
-
         public AddSerial(string serialId, string userId)
         {
             Debug.Assert(!userId.IsNullOrWhiteSpace());
             Debug.Assert(!serialId.IsNullOrWhiteSpace());
 
-            _serialId = serialId;
-            _userId = userId;
+            SerialId = serialId;
+            UserId = userId;
         }
 
-        public string UserId
-        {
-            get { return _userId; }
-        }
+        public string UserId { get; }
 
-        public string SerialId
-        {
-            get { return _serialId; }
-        }
+        public string SerialId { get; }
     }
 }

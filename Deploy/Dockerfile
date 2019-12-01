@@ -1,6 +1,6 @@
 # Stage 1
-FROM microsoft/aspnetcore-build:2.0.0-jessie AS builder
-WORKDIR /app/
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build-env
+WORKDIR /app
 
 # copy csproj and restore as distinct layers
 COPY src/Calendar.Web/Calendar.Web.csproj ./src/Calendar.Web/Calendar.Web.csproj
@@ -11,7 +11,7 @@ COPY . .
 RUN dotnet publish --output out --configuration Release
 
 # Stage 2
-FROM microsoft/aspnetcore:2.0.0-jessie
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
 WORKDIR /app
-COPY --from=builder /app/src/Calendar.Web/out/ .
+COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "Calendar.Web.dll"]

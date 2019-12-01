@@ -24,12 +24,12 @@ namespace Calendar.Caching
 
             if (File.Exists(filename))
             {
-                return File.ReadAllText(filename);
+                return await File.ReadAllTextAsync(filename);
             }
 
             var value = await factory();
 
-            File.WriteAllText(filename, value);
+            await File.WriteAllTextAsync(filename, value);
 
             return value;
         }

@@ -16,21 +16,14 @@ namespace Calendar.Domain.Users
         }
         #endregion
 
-        private readonly string _userId;
 
         public GetUserSerials(string userId)
         {
             Debug.Assert(!userId.IsNullOrEmpty());
 
-            _userId = userId;
+            UserId = userId;
         }
 
-        public string UserId
-        {
-            get
-            {
-                return _userId;
-            }
-        }
+        public string UserId { get; }
     }
 }

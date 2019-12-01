@@ -1,31 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AssemblyName>Calendar.Data.Implementation</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />    
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Calendar.Domain\Calendar.Domain.csproj" />
     <ProjectReference Include="..\Libraries\Calendar.CQRS\Calendar.CQRS.csproj" />
     <ProjectReference Include="..\Libraries\Calendar.Builder\Calendar.Builder.csproj" />
-    <ProjectReference Include="..\Libraries\Calendar.Common\Calendar.Common.csproj">
-      <FromP2P>true</FromP2P>
-    </ProjectReference>
-    <ProjectReference Include="..\Libraries\Calendar.Caching\Calendar.Caching.csproj">
-      <FromP2P>true</FromP2P>
-    </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NETStandard.Library">
-      <Version>2.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Dapper">
-      <Version>1.50.2</Version>
-    </PackageReference>
-    <PackageReference Include="Autofac">
-      <Version>4.6.0</Version>
-    </PackageReference>
+    <ProjectReference Include="..\Libraries\Calendar.Common\Calendar.Common.csproj" />
+    <ProjectReference Include="..\Libraries\Calendar.Caching\Calendar.Caching.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

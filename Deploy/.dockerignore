@@ -1,7 +1,6 @@
 .git
-Deploy/*.image
+Deploy/
 **/bin/
 **/obj/
 **/node_modules/
-**/bower_components/
 .vs

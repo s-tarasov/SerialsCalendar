@@ -9,9 +9,9 @@ namespace Calendar.Web.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
+        private UserManager<IdentityUser> _userManager;
 
-        public DashboardController(UserManager<ApplicationUser> userManager)
+        public DashboardController(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
         }

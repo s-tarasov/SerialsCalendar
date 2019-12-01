@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Net.Http;
 
 using Autofac;
 using Autofac.Core;
 
 using Calendar.Builder;
 
-using Calendar.Web.Configuration;
 using Calendar.Builder.ReleaseProviders;
 using Calendar.Builder.ReleaseProviders.TMD;
+using Microsoft.Extensions.Configuration;
 using TMDbLib.Client;
 
 namespace Calendar.Web.Dependencies.Configurators
@@ -23,7 +22,11 @@ namespace Calendar.Web.Dependencies.Configurators
                 .As<ReleaseProviderBase>()
                 .WithParameter("minDate", DateTime.Today.AddYears(-1));
 
-            builder.Register(ctx => new TMDbClient("fe5f5be42e7abbb3079056701867b87f"));
+            builder.Register(ctx =>
+            {
+                var apiKey = ctx.Resolve<IConfiguration>().GetSection("ExternalServices:TvRange").GetValue<string>("ApiKey");
+                return new TMDbClient(apiKey);
+            });
 
             builder.RegisterType<TMDSerialIdProvider>()       
                 .Keyed<ISerialIdProvider>("serialIdProvider");

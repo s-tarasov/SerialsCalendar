@@ -17,9 +17,9 @@ namespace Calendar.Web.Controllers
     public class SerialsController : Controller
     {
         private readonly IDataDispatcher _dataDispatcher;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public SerialsController(IDataDispatcher dataDispatcher, UserManager<ApplicationUser> userManager)
+        public SerialsController(IDataDispatcher dataDispatcher, UserManager<IdentityUser> userManager)
         {
             Debug.Assert(dataDispatcher != null);
 

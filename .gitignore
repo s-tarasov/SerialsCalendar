@@ -1,4 +1,5 @@
 #Visual Studio files
+.vs/
 *.[Oo]bj
 *.user
 *.aps
@@ -49,6 +50,3 @@ project.lock.json
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line
 packages/
-*.image
-appsettings.*.json
-/.vs/*

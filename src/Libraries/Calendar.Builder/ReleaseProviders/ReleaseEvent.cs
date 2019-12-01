@@ -4,10 +4,6 @@ namespace Calendar.Builder.ReleaseProviders
 {
     public class ReleaseEvent
     {
-        private readonly DateTime _date;
-        private readonly string _summary;
-        private readonly string _description;
-
         public ReleaseEvent(DateTime date, string summary, string description)
         {
             if (string.IsNullOrWhiteSpace(summary))
@@ -15,30 +11,20 @@ namespace Calendar.Builder.ReleaseProviders
                 throw new ArgumentException("summary");
             }
 
-            if (date == DateTime.MinValue)
+            if (date == default)
             {
                 throw new ArgumentException("date");
             }
 
-            _date = date;
-            _summary = summary;
-            _description = description;
-            
+            Date = date;
+            Summary = summary;
+            Description = description;            
         }
 
-        public DateTime Date
-        {
-            get { return _date; }
-        }
+        public DateTime Date { get; }
 
-        public string Summary
-        {
-            get { return _summary; }
-        }
+        public string Summary { get; }
 
-        public string Description
-        {
-            get { return _description; }
-        }
+        public string Description { get; }
     }
 }

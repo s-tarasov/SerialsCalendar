@@ -1,36 +1,106 @@
-using System;
-
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using Calendar.Web.Dependencies.Configurators;
+using Calendar.Data.Implementation.EF;
 
-using Calendar.Web;
-using Calendar.Web.App_Start;
-
-public class Startup
+namespace WebApplication7
 {
-    private IConfiguration _configuration;
-
-    public Startup(IHostingEnvironment env)
+    public class Startup
     {
-        _configuration = ApplicationConfiguration.InitializeAndGetConfiguration(env);
-    }
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-    public IServiceProvider ConfigureServices(IServiceCollection services) {
-        return ServiceConfigurator.Configure(services, _configuration);
-    }
+        public IConfiguration Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
 
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-    {
-        loggerFactory.AddConsole(_configuration.GetSection("Logging"));
-        loggerFactory.AddDebug();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddAuthentication()
+                .AddGoogle(options =>
+            {
+                var googleAuthNSection = Configuration.GetSection("Authentication:Google");
 
-        app
-            .UseStaticFiles()
-            .UseAuthentication()
-            .UseDeveloperExceptionPage()
-            .UseMvc(RouteConfig.RegisterRoutes);
+                options.ClientId = googleAuthNSection["ClientId"];
+                options.ClientSecret = googleAuthNSection["ClientSecret"];
+            });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder
+                .RegisterModule(new CachingModule())
+                .RegisterModule(new DataModule())
+                .RegisterModule(new CalendarBuilderModule());
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute("welcome", "", new
+                {
+                    controller = "welcome",
+                    action = "Index"
+                });
+
+                endpoints.MapControllerRoute("dashboard", "dashboard", new
+                {
+                    controller = "dashboard",
+                    action = "Index"
+                });
+
+                endpoints.MapControllerRoute("feeds", "feeds/{feedId}", new
+                {
+                    controller = "feed",
+                    action = "feed"
+                });
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
     }
 }
