@@ -47,7 +47,7 @@ namespace Calendar.Web.Controllers
             }
 
             await _dataDispatcher.ExecuteAsync(new AddSerial(
-                serialId: serial.SerialId,
+                serialId: serial.SerialId!,
                 userId: GetUserId()
             ));
 

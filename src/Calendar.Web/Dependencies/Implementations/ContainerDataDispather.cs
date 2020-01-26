@@ -30,7 +30,7 @@ namespace Calendar.Web.Dependencies.Implementations
         public Task<TResult> ExecuteAsync<TResult>(IQuery<TResult> query)
         {
             var resultTypeInfoType = typeof(TypeInfo<>).MakeGenericType(typeof(TResult));
-            var resultTypeInfo = Activator.CreateInstance(resultTypeInfoType);
+            var resultTypeInfo = Activator.CreateInstance(resultTypeInfoType)!;
 
             return ExecuteQueryAsync((dynamic)query, (dynamic)resultTypeInfo);
         }

@@ -20,7 +20,7 @@ namespace WebApplication7
         }
 
         public IConfiguration Configuration { get; }
-        public ILifetimeScope AutofacContainer { get; private set; }
+        public ILifetimeScope? AutofacContainer { get; private set; }
 
         public void ConfigureServices(IServiceCollection services)
         {

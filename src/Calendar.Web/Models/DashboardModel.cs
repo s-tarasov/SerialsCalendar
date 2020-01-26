@@ -2,6 +2,6 @@
 {
     public class DashboardModel
     {
-        public string FeedUrl { get; set; }
+        public string? FeedUrl { get; set; }
     }
 }

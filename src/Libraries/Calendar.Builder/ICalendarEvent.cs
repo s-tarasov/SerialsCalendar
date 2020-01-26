@@ -12,6 +12,6 @@ namespace Calendar.Builder
 
         string Summary { get; }
 
-        string Location { get; }
+        string? Location { get; }
     }
 }

@@ -36,7 +36,7 @@ namespace Calendar.Builder
             get { return _release.Summary; }
         }
 
-        public string Location
+        public string? Location
         {
             get { return null; }
         }
