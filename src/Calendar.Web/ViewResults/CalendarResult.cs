@@ -8,7 +8,7 @@ using Ical.Net.Serialization;
 using Ical.Net.DataTypes;
 
 using Microsoft.AspNetCore.Mvc;
-using Ical.Net.Serialization.iCalendar.Serializers;
+using Ical.Net.CalendarComponents;
 
 namespace Calendar.Web.ViewResults
 {
@@ -37,7 +37,7 @@ namespace Calendar.Web.ViewResults
             var iCal = new Ical.Net.Calendar();
             foreach (var calendarEvent in _events)
             {
-                var evt = new Ical.Net.CalendarEvent();
+                var evt = new CalendarEvent();
                 evt.Start = new CalDateTime(calendarEvent.Start);
                 evt.End = new CalDateTime(calendarEvent.End);
                 evt.Description = calendarEvent.Description;
