@@ -1,5 +1,5 @@
 # Stage 1
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
@@ -11,7 +11,7 @@ COPY . .
 RUN dotnet publish --output out --configuration Release
 
 # Stage 2
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "Calendar.Web.dll"]

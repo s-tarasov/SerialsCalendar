@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">  
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AssemblyName>Calendar.Builder</AssemblyName>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Calendar.Caching\Calendar.Caching.csproj" />

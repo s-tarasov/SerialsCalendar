@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AFCEE92F-BAB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3B719C0-43D0-4F4D-BAE4-612C99F59BF3}"
 	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
 		global.json = global.json
 	EndProjectSection
 EndProject
